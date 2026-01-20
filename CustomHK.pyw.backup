@@ -1,0 +1,95 @@
+from pynput import keyboard
+from pynput.keyboard import Controller, Key
+import pystray
+from PIL import Image
+import win32clipboard
+
+state = True
+
+def type_signature():
+    #print('Type Signature Activated!')
+    kb.release(Key.alt)
+    kb.type("Thanks,\nAndrew")
+    
+def paste_notes():
+    #print('Paste Notes Activated!')
+    win32clipboard.OpenClipboard()
+    if (win32clipboard.IsClipboardFormatAvailable(win32clipboard.CF_UNICODETEXT)):
+        #print("Clipboard contains text")
+        data = win32clipboard.GetClipboardData(win32clipboard.CF_UNICODETEXT)
+        #print(data)
+        #print("----")
+        data = data.splitlines()
+        index = 0
+
+        for line in data:
+            nl = "-" + line
+            data[index] = nl
+            #print(nl)
+            #print("--")
+            index = index + 1
+        data = "\n".join(data)
+        #print(data)
+        #win32clipboard.EmptyClipboard()
+        #win32clipboard.SetClipboardText(data, win32clipboard.CF_UNICODETEXT)
+    win32clipboard.CloseClipboard()
+    kb.release(Key.alt)
+    kb.type("\n\n---------------\n\n")
+    """kb.press(Key.ctrl)
+    kb.press('v')
+    kb.release(Key.ctrl)
+    kb.release('v')
+    kb.tap(Key.home)"""
+    kb.type(data)
+    
+def pretty_notes():
+    #print('Pretty Notes Activated!')
+    kb.release(Key.alt)
+    kb.press('-')
+    kb.release('-')
+    kb.press(Key.up)
+    kb.release(Key.up)
+    kb.press(Key.home)
+    kb.release(Key.home)
+    kb.press(Key.alt)
+
+def on_select(icon, item, listener):
+    global state
+    state = not item.checked
+    #print(str(state))
+    if not state:
+        listener.stop()
+    else:
+        listener = create_listener()
+        listener.start()
+
+def on_hotkey():
+    print("Hotkey activated!")
+
+def on_exit(icon, item, listener):
+    listener.stop()
+    icon.stop()
+
+def create_listener():
+    listener = keyboard.GlobalHotKeys(custom_hotkeys)
+    return listener
+
+if __name__ == '__main__':
+    # Create menu
+    menu = (pystray.MenuItem('CustomHK', None),
+            pystray.Menu.SEPARATOR,
+            pystray.MenuItem('Enabled', lambda icon, item: on_select(icon, item, listener), checked=lambda item: state),
+            pystray.MenuItem('Exit', lambda icon, item: on_exit(icon, item, listener)))
+
+    icon_image = Image.open("CHK_icon.png")
+
+    icon = pystray.Icon("test_icon", icon_image, "Test Icon", menu)
+
+    custom_hotkeys = {'<alt>+1': type_signature,
+                      '<alt>+2': paste_notes,
+                      '<alt>+3': pretty_notes}
+
+    icon.run_detached()
+    kb = Controller()
+    listener = create_listener()
+    listener.start()
