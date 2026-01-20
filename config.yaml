@@ -1,0 +1,69 @@
+# CustomHK Configuration File
+# This file defines your hotkeys, actions, and application behavior
+
+# Application settings
+app:
+  name: "CustomHK"
+  icon: "CHK_icon.png"
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  log_file: "customhk.log"
+
+# Your personal settings
+user:
+  signature: "Thanks,\nAndrew"
+
+# Global hotkeys (work in all applications)
+hotkeys:
+  global:
+    - key: "<alt>+1"
+      action: "type_signature"
+      enabled: true
+
+    - key: "<alt>+2"
+      action: "paste_formatted_notes"
+      enabled: true
+
+    - key: "<alt>+3"
+      action: "pretty_notes"
+      enabled: true
+
+    - key: "<alt>+<shift>+h"
+      action: "show_wizard"
+      enabled: true
+      description: "Show the hotkey wizard GUI"
+
+# Application-specific hotkeys (only work in specific apps)
+# Format: window_title can be a substring match or regex pattern
+hotkeys_conditional:
+  # Example: Outlook-specific hotkeys
+  # - window_title: "Outlook"
+  #   key: "<ctrl>+<shift>+s"
+  #   action: "type_signature"
+
+  # Example: Browser-specific hotkeys
+  # - window_title: "Chrome|Firefox|Edge"
+  #   key: "<ctrl>+<shift>+n"
+  #   action: "paste_formatted_notes"
+
+# Macro definitions (for future macro recording feature)
+macros:
+  # example_macro:
+  #   name: "Example Macro"
+  #   description: "Description of what this macro does"
+  #   steps:
+  #     - type: "key_press"
+  #       key: "ctrl+c"
+  #     - type: "wait"
+  #       duration: 0.1
+  #     - type: "type_text"
+  #       text: "Some text"
+
+# Action-specific settings
+actions:
+  paste_formatted_notes:
+    prefix: "-"  # Prefix for each line
+    separator: "\n\n---------------\n\n"  # Text before pasted content
+
+  type_signature:
+    # Uses user.signature from above
+    pass
