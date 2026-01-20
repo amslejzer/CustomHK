@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "customhk"
+version = "2.0.0"
+description = "Custom hotkey automation tool for Windows"
+authors = [{name = "Andrew"}]
+requires-python = ">=3.8"
+dependencies = [
+    "pynput>=1.7.6",
+    "pystray>=0.19.5",
+    "Pillow>=10.0.0",
+    "pywin32>=305",
+    "PyYAML>=6.0",
+    "pywinauto>=0.6.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "mypy>=1.0.0",
+]
+
+[project.scripts]
+customhk = "customhk.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["customhk*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
