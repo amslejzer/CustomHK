@@ -46,3 +46,9 @@ Thumbs.db
 
 # Config (user-specific)
 config.yaml  # Personal config file - users should copy from config.example.yaml
+
+# Local-only deployment tools
+BUILD_VENV.md
+build_portable.py
+check_environment.py
+portable_customhk/
