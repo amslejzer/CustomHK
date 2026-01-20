@@ -15,9 +15,21 @@ cd C:\Path\To\CustomHK
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Create your config file from the template
+copy config.example.yaml config.yaml
 ```
 
-### 2. Validate Installation
+### 2. Customize Your Config
+
+Edit `config.yaml` and change at minimum:
+
+```yaml
+user:
+  signature: "Your Name\nYour Title"  # Change this!
+```
+
+### 3. Validate Installation
 
 ```bash
 python validate.py
@@ -25,7 +37,7 @@ python validate.py
 
 This will check that everything is set up correctly.
 
-### 3. Test Run
+### 4. Test Run
 
 ```bash
 python -m customhk.main
@@ -35,7 +47,7 @@ You should see:
 - A small icon appear in your system tray
 - A message: "CustomHK is now running..."
 
-### 4. Test Your Hotkeys
+### 5. Test Your Hotkeys
 
 Try these default hotkeys:
 
@@ -44,7 +56,7 @@ Try these default hotkeys:
 - **Alt+3** - Navigation helper for notes
 - **Alt+Shift+H** - Opens the GUI wizard (NEW!)
 
-### 5. Check the System Tray
+### 6. Check the System Tray
 
 Right-click the CustomHK icon in your system tray to see:
 - Enable/Disable toggle

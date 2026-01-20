@@ -45,4 +45,4 @@ customhk.log
 Thumbs.db
 
 # Config (user-specific)
-# config.yaml  # Uncomment if you want to ignore personal config
+config.yaml  # Personal config file - users should copy from config.example.yaml

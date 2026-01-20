@@ -1,5 +1,5 @@
 # CustomHK Configuration File
-# This file defines your hotkeys, actions, and application behavior
+# Copy this file to 'config.yaml' and customize it for your needs
 
 # Application settings
 app:
@@ -10,7 +10,7 @@ app:
 
 # Your personal settings
 user:
-  signature: "Thanks,\nAndrew"
+  signature: "Best regards,\nYour Name"  # Change this to your signature
 
 # Global hotkeys (work in all applications)
 hotkeys:
@@ -18,14 +18,17 @@ hotkeys:
     - key: "<alt>+1"
       action: "type_signature"
       enabled: true
+      description: "Type your signature"
 
     - key: "<alt>+2"
       action: "paste_formatted_notes"
       enabled: true
+      description: "Format clipboard text as bulleted list"
 
     - key: "<alt>+3"
       action: "pretty_notes"
       enabled: true
+      description: "Navigation helper for note formatting"
 
     - key: "<alt>+<shift>+h"
       action: "show_wizard"
@@ -39,11 +42,19 @@ hotkeys_conditional:
   # - window_title: "Outlook"
   #   key: "<ctrl>+<shift>+s"
   #   action: "type_signature"
+  #   enabled: true
 
   # Example: Browser-specific hotkeys
   # - window_title: "Chrome|Firefox|Edge"
   #   key: "<ctrl>+<shift>+n"
   #   action: "paste_formatted_notes"
+  #   enabled: true
+
+  # Example: VS Code specific
+  # - window_title: "Visual Studio Code"
+  #   key: "<ctrl>+<alt>+d"
+  #   action: "insert_date"
+  #   enabled: true
 
 # Macro definitions (for future macro recording feature)
 macros:
@@ -61,9 +72,9 @@ macros:
 # Action-specific settings
 actions:
   paste_formatted_notes:
-    prefix: "-"  # Prefix for each line
-    separator: "\n\n---------------\n\n"  # Text before pasted content
+    prefix: "-"  # Prefix for each line (use "-" for bullets, "*" for asterisks, etc.)
+    separator: "\n\n---------------\n\n"  # Text separator before pasted content
 
   type_signature:
     # Uses user.signature from above
-    pass
+    # No additional configuration needed

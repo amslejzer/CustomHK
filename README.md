@@ -38,6 +38,13 @@ A powerful and extensible Windows hotkey automation tool with system tray integr
    pip install -e .
    ```
 
+5. **Create your configuration file**:
+   ```bash
+   copy config.example.yaml config.yaml
+   ```
+
+   Then edit `config.yaml` to customize your signature and hotkeys.
+
 ## Usage
 
 ### Running the Application
@@ -74,7 +81,13 @@ The application will now start minimized to the system tray on login.
 
 ## Configuration
 
-Configuration is stored in `config.yaml`. The file is well-commented and self-documenting.
+Configuration is stored in `config.yaml`. Copy from `config.example.yaml` to get started:
+
+```bash
+copy config.example.yaml config.yaml
+```
+
+Then edit `config.yaml` to customize your settings. The file is well-commented and self-documenting.
 
 ### Basic Configuration Structure
 
@@ -85,7 +98,7 @@ app:
   log_level: "INFO"
 
 user:
-  signature: "Thanks,\nAndrew"
+  signature: "Best regards,\nYour Name"
 
 hotkeys:
   global:
